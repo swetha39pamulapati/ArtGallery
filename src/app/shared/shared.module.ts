@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderLayoutComponent } from './layouts/header-layout/header-layout.component';
 import { HeaderComponent } from './layouts/header/header.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -10,7 +11,8 @@ import { HeaderComponent } from './layouts/header/header.component';
     HeaderLayoutComponent,HeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[HeaderLayoutComponent]
 })
