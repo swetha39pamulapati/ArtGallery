@@ -1,20 +1,42 @@
 <div class = "row">
     <div class ="col-md-6 offset-md-3 mt-4" >
         <h3>Sign in</h3>
-        <form>
-            <div class="mb-3">
+        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+            <!-- <div class="mb-3">
               <label for="registerUserName" class="form-label">Username</label>
-              <input type="text" class="form-control" id="registerUserName" placeholder="Enter Username">
-            </div>
+              <input type="text" class="form-control" formControlName="registerUserName" placeholder="Enter Username">
+            </div> -->
             <div class="mb-3">
                 <label for="registerEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" id="registerEmail" placeholder="Enter Email">
+                <input type="text" formControlName="registerEmail" class="form-control" placeholder="Email"/>
+                <div *ngIf="registerForm.controls['registerEmail'].invalid && registerForm.controls['registerEmail'].touched " class="text-danger">
+                  <div *ngIf="registerForm.controls['registerEmail'].errors && registerForm.controls['registerEmail'].errors['required']">Email is required.</div>
+                   <div *ngIf="registerForm.controls['registerEmail'].errors && registerForm.controls['registerEmail'].errors['pattern']">Please, enter valid email address.</div> 
+              </div>
+           <!-- <span style = "color:red" *ngIf = "registerForm.controls['registerEmail'].invalid && registerForm.controls['registerEmail'].touched ">Invalid</span> -->
+                <!-- <div *ngIf="submitted && registerForm.controls['registerEmail'].errors" class="invalid-feedback"> -->
+        <!-- <div *ngIf="registerForm.controls['registerEmail'].errors['required']">Email is required</div> -->
+        <!-- <div *ngIf="f.registerEmail.errors.email">Email is invalid</div> -->
+      <!-- </div> -->
               </div>
             <div class="mb-3">
               <label for="registerPassword" class="form-label">Password</label>
-              <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+              <input type="password" class="form-control" formControlName="registerPassword" placeholder="Password" >
+              <div *ngIf="registerForm.controls['registerPassword'].invalid && registerForm.controls['registerPassword'].touched " class="text-danger">
+                <div *ngIf="registerForm.controls['registerPassword'].errors && registerForm.controls['registerPassword'].errors['required']">Password is required.</div>
+                <!-- <div *ngIf="registerForm.controls['registerPassword'].errors && registerForm.controls['registerPassword'].errors['minLength']">The Password must be minimum 3 characters long.</div>    -->
+             <!-- <div *ngIf="registerForm.controls['registerPassword'].errors && registerForm.controls['registerPassword'].errors['pattern']">Minimum eight characters, at least one uppercase letter, one lowercase letter and one number</div>  -->
+                  </div>
             </div>
-            <button type="submit" class="btn btn-primary">Register <i class="fas fa-sign-in-alt"></i></button>
+            <div class="mb-3">
+              <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" formControlName="registerConfirmPassword" placeholder="Confirm Password">
+              <div *ngIf="registerForm.controls['registerConfirmPassword'].invalid && registerForm.controls['registerConfirmPassword'].touched " class="text-danger">
+                <div *ngIf="registerForm.controls['registerConfirmPassword'].errors && registerForm.controls['registerConfirmPassword'].errors['required']">Confirm Password is required.</div>
+              <div *ngIf="registerForm.controls['registerConfirmPassword'].errors?.['matching']">Password and Confirm Password must match.</div> 
+              </div>
+            </div>
+            <button type="submit" [disabled] = "registerForm.invalid" class="btn btn-primary">Register <i class="fas fa-sign-in-alt"></i></button>
           </form>
 
     </div>
