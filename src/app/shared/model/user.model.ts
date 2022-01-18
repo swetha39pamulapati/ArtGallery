@@ -11,3 +11,6 @@ export class loginUser{
     loginUserName : string;
     loginPassword: string;
 }
+export class AddExternalLogin{
+    ExternalAccessToken : string;
+}
